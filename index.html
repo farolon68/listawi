@@ -43,6 +43,15 @@
             margin-bottom: 12px;
         }
 
+/* EFECTO DE FOCO PARA EL MANDO (Crucial para TV) */
+        .enlace-video:focus, .enlace-video.focus-tv {
+            color: #fff;
+            background-color: #00adb5;
+            border-color: #fff;
+            transform: scale(1.04);
+            box-shadow: 0 0 15px rgba(0, 173, 181, 0.8);
+        }
+
         /* Estilo de los botones/enlaces */
         .enlace-video {
             display: block;
@@ -244,6 +253,68 @@
         </main>
 
     </div>
+<!-- SCRIPT DE NAVEGACIÓN PARA MANDO A DISTANCIA -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Seleccionamos todos los enlaces interactivos
+            const enlaces = document.querySelectorAll(".enlace-video");
+            const sidebar = document.getElementById("sidebar");
+            let indexActual = 0;
+
+            // 1. Forzar el foco en el primer enlace al cargar la página
+            if (enlaces.length > 0) {
+                enlaces[indexActual].focus();
+            }
+
+            // 2. Escuchar las pulsaciones del mando a distancia (Teclado)
+            document.addEventListener("keydown", (e) => {
+                // Códigos de flechas normales y códigos nativos de Android TV / Fire TV
+                if (e.key === "ArrowDown" || e.keyCode === 40) {
+                    e.preventDefault(); // Evita el scroll caótico por defecto
+                    if (indexActual < enlaces.length - 1) {
+                        indexActual++;
+                    } else {
+                        indexActual = 0; // Vuelve al inicio (bucle)
+                    }
+                    actualizarFoco();
+                } 
+                
+                else if (e.key === "ArrowUp" || e.keyCode === 38) {
+                    e.preventDefault();
+                    if (indexActual > 0) {
+                        indexActual--;
+                    } else {
+                        indexActual = enlaces.length - 1; // Va al final (bucle)
+                    }
+                    actualizarFoco();
+                }
+
+                else if (e.key === "Enter" || e.keyCode === 13) {
+                    // Al pulsar OK en el mando, simulamos el clic para cargar el iframe
+                    enlaces[indexActual].click();
+                }
+            });
+
+            // Función para mover el foco e iluminar el elemento
+            function actualizarFoco() {
+                enlaces[indexActual].focus();
+                
+                // Hace scroll automático en el panel izquierdo si hay muchos enlaces y quedan ocultos
+                enlaces[indexActual].scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest"
+                });
+            }
+
+            // Permitir también que el ratón actualice el índice si se usa un "Air Mouse"
+            enlaces.forEach((enlace, index) => {
+                enlace.addEventListener("mouseenter", () => {
+                    indexActual = index;
+                    enlace.focus();
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>
