@@ -3,292 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Streamings Individuales</title>
+    <title>Reproductor de Enlaces Embebidos</title>
     <style>
-        body {
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: white;
-            text-align: center;
-            padding: 20px;
         }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-        .video-card {
-            background-color: #1e1e1e;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-        }
-        /* Contenedor del reproductor / marcador de posición */
-        .video-container {
-            width: 100%;
-            height: 300px;
-            background-color: #000;
-            position: relative;
-            border-radius: 4px;
+
+        /* Contenedor principal que divide la pantalla */
+        .reproductor-container {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background-size: cover;
-            background-position: center;
+            height: 100vh;
+            background-color: #1e1e1e;
+            color: #fff;
         }
-        /* Botón para activar el stream */
-        .play-btn {
-            background-color: #e50914;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 16px;
+
+        /* Panel Izquierdo: Lista de enlaces */
+        .panel-izquierdo {
+            width: 300px;
+            background-color: #2d2d2d;
+            padding: 20px;
+            overflow-y: auto;
+            border-right: 2px solid #3d3d3d;
+        }
+
+        .panel-izquierdo h2 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #00adb5;
+        }
+
+        .lista-enlaces {
+            list-style: none;
+        }
+
+        .lista-enlaces li {
+            margin-bottom: 12px;
+        }
+
+        /* Estilo de los botones/enlaces */
+        .enlace-video {
+            display: block;
+            padding: 12px;
+            background-color: #3a3a3a;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s, transform 0.2s;
             font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            z-index: 2;
-            transition: background 0.2s;
         }
-        .play-btn:hover {
-            background-color: #b80710;
+
+        .enlace-video:hover {
+            background-color: #00adb5;
+            transform: translateX(5px);
         }
-        /* Estilo para cuando el iframe ya está cargado */
-        .video-container iframe {
+
+        /* Panel Derecho: El contenedor único */
+        .panel-derecho {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #121212;
+            padding: 20px;
+        }
+
+        /* Estilo del Iframe interactivo */
+        .visor-embebido {
             width: 100%;
             height: 100%;
             border: none;
-            position: absolute;
-            top: 0;
-            left: 0;
+            border-radius: 8px;
+            background-color: #000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Adaptación para pantallas pequeñas (móviles) */
+        @media (max-width: 768px) {
+            .reproductor-container {
+                flex-direction: column;
+            }
+            .panel-izquierdo {
+                width: 100%;
+                height: 35vh;
+            }
+            .panel-derecho {
+                height: 65vh;
+            }
         }
     </style>
 </head>
 <body>
 
-    <h1>Panel de Streamings EL_LORA</h1>
-    <p>Haz clic en el botón de cualquier canal para empezar a reproducirlo.</p>
+    <div class="reproductor-container">
+        
+        <!-- PANEL IZQUIERDO: LISTA DE ENLACES -->
+        <aside class="panel-izquierdo">
+            <h2>EL LORA ENLACES</h2>
+            <ul class="lista-enlaces">
+                <!-- El secreto está en target="contenedor_principal" -->
+                <li>
+                    <a href="https://dlive.sx/stream/stream-437.php" target="contenedor_principal" class="enlace-video">
+                        🎥 MOVISTAR +
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-435.php" target="contenedor_principal" class="enlace-video">
+                        🎥 MOVISTAR LIGA CAMP.
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-436.php" target="contenedor_principal" class="enlace-video">
+                        🎥 MOVISTAR DEPORTES
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-84.php" target="contenedor_principal" class="enlace-video">
+                        🎥 MOVISTAR LA LIGA
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-438.php" target="contenedor_principal" class="enlace-video">
+                        🎥 MOVISTAR DEPORTES 2
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-526.php" target="contenedor_principal" class="enlace-video">
+                        🎥 MOVISTAR DEPORTES 3
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-527.php" target="contenedor_principal" class="enlace-video">
+                        🎥 MOVISTAR DEPORTES 4
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-528.php" target="contenedor_principal" class="enlace-video">
+                        🎥 MOVISTAR GOLF
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-445.php" target="contenedor_principal" class="enlace-video">
+                        🎥 DAZN 1
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-446.php" target="contenedor_principal" class="enlace-video">
+                        🎥 DAZN 2
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-538.php" target="contenedor_principal" class="enlace-video">
+                        🎥 DAZN LA LIGA
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-537.php" target="contenedor_principal" class="enlace-video">
+                        🎥 DAZN F1
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-524.php" target="contenedor_principal" class="enlace-video">
+                        🎥 EUROSPORT 1
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-525.php" target="contenedor_principal" class="enlace-video">
+                        🎥 EUROSPORT 2
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-539.php" target="contenedor_principal" class="enlace-video">
+                        🎥 LIGA SMARTBANK
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-521.php" target="contenedor_principal" class="enlace-video">
+                        🎥 VAMOS
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-522.php" target="contenedor_principal" class="enlace-video">
+                        🎥 BARCA TV
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-533.php" target="contenedor_principal" class="enlace-video">
+                        🎥 TVE 1
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-536.php" target="contenedor_principal" class="enlace-video">
+                        🎥 TVE 2
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-532.php" target="contenedor_principal" class="enlace-video">
+                        🎥 TELECINCO
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-531.php" target="contenedor_principal" class="enlace-video">
+                        🎥 ANTENA 3
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-310.php" target="contenedor_principal" class="enlace-video">
+                        🎥 COMEDY CENTRAL
+                    </a>
+                </li>
+<li>
+                    <a href="https://dlive.sx/stream/stream-535.php" target="contenedor_principal" class="enlace-video">
+                        🎥 CUATRO
+                    </a>
+                </li>
+                <li>
+                    <a href="https://dlive.sx/stream/stream-534.php" target="contenedor_principal" class="enlace-video">
+                        🎥 LA SEXTA
+                    </a>
+                </li>
+                <li>
+                    <a href="https://google.com" target="contenedor_principal" class="enlace-video">
+                        🗺️ Ver Mapa Interactivo
+                    </a>
+                </li>
+            </ul>
+        </aside>
 
-    <div class="grid-container">
-
-        <!-- CANAL 1 -->
-        <div class="video-card">
-            <h3>MOVISTAR PLUS</h3>
-            <!-- En data-embed pones SOLAMENTE la URL que va dentro de tu iframe (el src) -->
-            <div class="video-container" id="stream1" data-embed="https://dlive.sx/stream/stream-437.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream1')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 2 -->
-        <div class="video-card">
-            <h3>MOVISTAR LIGA CAMP.</h3>
-            <div class="video-container" id="stream2" data-embed="https://dlive.sx/stream/stream-435.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream2')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 3 -->
-        <div class="video-card">
-            <h3>MOVISTAR DEPORTES</h3>
-            <div class="video-container" id="stream3" data-embed="https://dlive.sx/stream/stream-436.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream3')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 4 -->
-        <div class="video-card">
-            <h3>MOVISTAR LA LIGA</h3>
-            <div class="video-container" id="stream4" data-embed="https://dlive.sx/stream/stream-84.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream4')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 5 -->
-        <div class="video-card">
-            <h3>MOVISTAR DEPORTES 2</h3>
-            <div class="video-container" id="stream5" data-embed="https://dlive.sx/stream/stream-438.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream5')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 6 -->
-        <div class="video-card">
-            <h3>MOVISTAR DEPORTES 3</h3>
-            <div class="video-container" id="stream6" data-embed="https://dlive.sx/stream/stream-526.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream6')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 7 -->
-        <div class="video-card">
-            <h3>MOVISTAR DEPORTES 4</h3>
-            <div class="video-container" id="stream7" data-embed="https://dlive.sx/stream/stream-527.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream7')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 8 -->
-        <div class="video-card">
-            <h3>MOVISTAR GOLF</h3>
-            <div class="video-container" id="stream8" data-embed="https://dlive.sx/stream/stream-528.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream8')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 9 -->
-        <div class="video-card">
-            <h3>DAZN 1</h3>
-            <div class="video-container" id="stream9" data-embed="https://dlive.sx/stream/stream-445.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream9')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 10 -->
-        <div class="video-card">
-            <h3>DAZN 2</h3>
-            <div class="video-container" id="stream10" data-embed="https://dlive.sx/stream/stream-446.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream10')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 11 -->
-        <div class="video-card">
-            <h3>DAZN LA LIGA</h3>
-            <div class="video-container" id="stream11" data-embed="https://dlive.sx/stream/stream-538.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream11')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 12 -->
-        <div class="video-card">
-            <h3>DAZN F1</h3>
-            <div class="video-container" id="stream12" data-embed="https://dlive.sx/stream/stream-537.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream12')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 13 -->
-        <div class="video-card">
-            <h3>EUROSPORT 1</h3>
-            <div class="video-container" id="stream13" data-embed="https://dlive.sx/stream/stream-524.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream13')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 14 -->
-        <div class="video-card">
-            <h3>EUROSPORT 2</h3>
-            <div class="video-container" id="stream14" data-embed="https://dlive.sx/stream/stream-525.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream14')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 15 -->
-        <div class="video-card">
-            <h3>LIGA SMARTBANK</h3>
-            <div class="video-container" id="stream15" data-embed="https://dlive.sx/stream/stream-539.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream15')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 16 -->
-        <div class="video-card">
-            <h3>VAMOS</h3>
-            <div class="video-container" id="stream16" data-embed="https://dlive.sx/stream/stream-521.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream16')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 17 -->
-        <div class="video-card">
-            <h3>BARCA TV</h3>
-            <div class="video-container" id="stream17" data-embed="https://dlive.sx/stream/stream-522.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream17')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 18 -->
-        <div class="video-card">
-            <h3>TVE 1</h3>
-            <div class="video-container" id="stream18" data-embed="https://dlive.sx/stream/stream-533.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream18')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 19 -->
-        <div class="video-card">
-            <h3>TVE 2</h3>
-            <div class="video-container" id="stream19" data-embed="https://dlive.sx/stream/stream-536.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream19')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 20 -->
-        <div class="video-card">
-            <h3>TELECINCO</h3>
-            <div class="video-container" id="stream20" data-embed="https://dlive.sx/stream/stream-532.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream20')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 21 -->
-        <div class="video-card">
-            <h3>ANTENA 3</h3>
-            <div class="video-container" id="stream21" data-embed="https://dlive.sx/stream/stream-531.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream21')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 22 -->
-        <div class="video-card">
-            <h3>COMEDY CENTRAL</h3>
-            <div class="video-container" id="stream22" data-embed="https://dlive.sx/stream/stream-310.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream22')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 23 -->
-        <div class="video-card">
-            <h3>CUATRO</h3>
-            <div class="video-container" id="stream23" data-embed="https://dlive.sx/stream/stream-535.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream23')">Ver Streaming</button>
-            </div>
-        </div>
-
-        <!-- CANAL 24 -->
-        <div class="video-card">
-            <h3>LA SEXTA</h3>
-            <div class="video-container" id="stream24" data-embed="https://dlive.sx/stream/stream-534.php" style="background-image: url('https://picsum.photos');">
-                <button class="play-btn" onclick="cargarVideo('stream24')">Ver Streaming</button>
-            </div>
-        </div>
+        <!-- PANEL DERECHO: CONTENEDOR ÚNICO -->
+        <main class="panel-derecho">
+            <!-- El iframe empieza vacío o con una url por defecto, y tiene el "name" asociado -->
+            <iframe 
+                name="contenedor_principal" 
+                src="https://youtube.com" 
+                class="visor-embebido" 
+                allowfullscreen>
+            </iframe>
+        </main>
 
     </div>
 
-    <script>
-        function cargarVideo(idContenedor) {
-            const contenedor = document.getElementById(idContenedor);
-            const urlEmbed = contenedor.getAttribute('data-embed');
-            
-            // Creamos el iframe en tiempo real al hacer clic
-            const iframe = document.createElement('iframe');
-            iframe.setAttribute('src', urlEmbed);
-            iframe.setAttribute('allowfullscreen', 'true');
-            // Intentamos forzar el autoplay para que no tengas que hacer un segundo clic dentro del reproductor
-            if (urlEmbed.includes('?')) {
-                iframe.setAttribute('src', urlEmbed + '&autoplay=1');
-            } else {
-                iframe.setAttribute('src', urlEmbed + '?autoplay=1');
-            }
-
-            // Limpiamos el botón y metemos el video
-            contenedor.innerHTML = '';
-            contenedor.appendChild(iframe);
-        }
-    </script>
-
 </body>
 </html>
-
