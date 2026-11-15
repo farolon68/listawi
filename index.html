@@ -1,345 +1,119 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reproductor de Enlaces Embebidos</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        /* Contenedor principal que divide la pantalla */
-        .reproductor-container {
-            display: flex;
-            height: 100vh;
-            background-color: #1e1e1e;
-            color: #fff;
-        }
-
-        /* Panel Izquierdo: Lista de enlaces */
-        .panel-izquierdo {
-            width: 300px;
-            background-color: #2d2d2d;
-            padding: 20px;
-            overflow-y: auto;
-            border-right: 2px solid #3d3d3d;
-        }
-
-        .panel-izquierdo h2 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: #00adb5;
-        }
-
-        .lista-enlaces {
-            list-style: none;
-        }
-
-        .lista-enlaces li {
-            margin-bottom: 12px;
-        }
-
-/* EFECTO DE FOCO PARA EL MANDO (Crucial para TV) */
-        .enlace-video:focus, .enlace-video.focus-tv {
-            color: #fff;
-            background-color: #00adb5;
-            border-color: #fff;
-            transform: scale(1.04);
-            box-shadow: 0 0 15px rgba(0, 173, 181, 0.8);
-        }
-
-        /* Estilo de los botones/enlaces */
-        .enlace-video {
-            display: block;
-            padding: 12px;
-            background-color: #3a3a3a;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: background 0.3s, transform 0.2s;
-            font-weight: bold;
-        }
-
-        .enlace-video:hover {
-            background-color: #00adb5;
-            transform: translateX(5px);
-        }
-
-        /* Panel Derecho: El contenedor único */
-        .panel-derecho {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #121212;
-            padding: 20px;
-        }
-
-        /* Estilo del Iframe interactivo */
-        .visor-embebido {
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 8px;
-            background-color: #000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-
-        /* Adaptación para pantallas pequeñas (móviles) */
-        @media (max-width: 768px) {
-            .reproductor-container {
-                flex-direction: column;
-            }
-            .panel-izquierdo {
-                width: 100%;
-                height: 35vh;
-            }
-            .panel-derecho {
-                height: 65vh;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="reproductor-container">
-        
-        <!-- PANEL IZQUIERDO: LISTA DE ENLACES -->
-        <aside class="panel-izquierdo">
-            <h2>EL LORA ENLACES</h2>
-            <ul class="lista-enlaces">
-                <!-- El secreto está en target="contenedor_principal" -->
-                <li>
-                    <a href="https://dlive.sx/stream/stream-437.php" target="contenedor_principal" class="enlace-video">
-                        🎥 MOVISTAR +
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-435.php" target="contenedor_principal" class="enlace-video">
-                        🎥 MOVISTAR LIGA CAMP.
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-436.php" target="contenedor_principal" class="enlace-video">
-                        🎥 MOVISTAR DEPORTES
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-84.php" target="contenedor_principal" class="enlace-video">
-                        🎥 MOVISTAR LA LIGA
-                    </a>
-                </li>
-<li>
-                    <a href="https://streamxhd.com/live1.php?stream=mlaliga" target="contenedor_principal" class="enlace-video">
-                        🎥 MOVISTAR LA LIGA Op2
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-438.php" target="contenedor_principal" class="enlace-video">
-                        🎥 MOVISTAR DEPORTES 2
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-526.php" target="contenedor_principal" class="enlace-video">
-                        🎥 MOVISTAR DEPORTES 3
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-527.php" target="contenedor_principal" class="enlace-video">
-                        🎥 MOVISTAR DEPORTES 4
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-528.php" target="contenedor_principal" class="enlace-video">
-                        🎥 MOVISTAR GOLF
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-445.php" target="contenedor_principal" class="enlace-video">
-                        🎥 DAZN 1
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-446.php" target="contenedor_principal" class="enlace-video">
-                        🎥 DAZN 2
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-538.php" target="contenedor_principal" class="enlace-video">
-                        🎥 DAZN LA LIGA
-                    </a>
-                </li>
-<li>
-                    <a href="https://streamxhd.com/live1.php?stream=daznlaliga" target="contenedor_principal" class="enlace-video">
-                        🎥 DAZN LA LIGA Op2
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-537.php" target="contenedor_principal" class="enlace-video">
-                        🎥 DAZN F1
-                    </a>
-                </li>
-<li>
-                    <a href="https://streamxhd.com/live1.php?stream=daznf1" target="contenedor_principal" class="enlace-video">
-                        🎥 DAZN F1 Op2
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-524.php" target="contenedor_principal" class="enlace-video">
-                        🎥 EUROSPORT 1
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-575.php" target="contenedor_principal" class="enlace-video">
-                        🎥 MOTO GP SKY
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-525.php" target="contenedor_principal" class="enlace-video">
-                        🎥 EUROSPORT 2
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-539.php" target="contenedor_principal" class="enlace-video">
-                        🎥 LIGA SMARTBANK
-                    </a>
-                </li>
-<li>
-                    <a href="https://streamxhd.com/live1.php?stream=laligahypermotion" target="contenedor_principal" class="enlace-video">
-                        🎥 LIGA SMARTBANK Op2
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-521.php" target="contenedor_principal" class="enlace-video">
-                        🎥 VAMOS
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-522.php" target="contenedor_principal" class="enlace-video">
-                        🎥 BARCA TV
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-533.php" target="contenedor_principal" class="enlace-video">
-                        🎥 TVE 1
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-536.php" target="contenedor_principal" class="enlace-video">
-                        🎥 TVE 2
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-532.php" target="contenedor_principal" class="enlace-video">
-                        🎥 TELECINCO
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-531.php" target="contenedor_principal" class="enlace-video">
-                        🎥 ANTENA 3
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-310.php" target="contenedor_principal" class="enlace-video">
-                        🎥 COMEDY CENTRAL
-                    </a>
-                </li>
-<li>
-                    <a href="https://dlive.sx/stream/stream-535.php" target="contenedor_principal" class="enlace-video">
-                        🎥 CUATRO
-                    </a>
-                </li>
-                <li>
-                    <a href="https://dlive.sx/stream/stream-534.php" target="contenedor_principal" class="enlace-video">
-                        🎥 LA SEXTA
-                    </a>
-                </li>
-                <li>
-                    <a href="https://streamxhd.com/live1.php?stream=mvamos" target="contenedor_principal" class="enlace-video">
-                        🗺️ EVENTOS
-                    </a>
-                </li>
-            </ul>
-        </aside>
-
-        <!-- PANEL DERECHO: CONTENEDOR ÚNICO -->
-        <main class="panel-derecho">
-            <!-- El iframe empieza vacío o con una url por defecto, y tiene el "name" asociado -->
-            <iframe 
-                name="contenedor_principal" 
-                src="https://youtube.com" 
-                class="visor-embebido" 
-                allowfullscreen>
-            </iframe>
-        </main>
-
-    </div>
-<!-- SCRIPT DE NAVEGACIÓN PARA MANDO A DISTANCIA -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            // Seleccionamos todos los enlaces interactivos
-            const enlaces = document.querySelectorAll(".enlace-video");
-            const sidebar = document.getElementById("sidebar");
-            let indexActual = 0;
-
-            // 1. Forzar el foco en el primer enlace al cargar la página
-            if (enlaces.length > 0) {
-                enlaces[indexActual].focus();
-            }
-
-            // 2. Escuchar las pulsaciones del mando a distancia (Teclado)
-            document.addEventListener("keydown", (e) => {
-                // Códigos de flechas normales y códigos nativos de Android TV / Fire TV
-                if (e.key === "ArrowDown" || e.keyCode === 40) {
-                    e.preventDefault(); // Evita el scroll caótico por defecto
-                    if (indexActual < enlaces.length - 1) {
-                        indexActual++;
-                    } else {
-                        indexActual = 0; // Vuelve al inicio (bucle)
-                    }
-                    actualizarFoco();
-                } 
-                
-                else if (e.key === "ArrowUp" || e.keyCode === 38) {
-                    e.preventDefault();
-                    if (indexActual > 0) {
-                        indexActual--;
-                    } else {
-                        indexActual = enlaces.length - 1; // Va al final (bucle)
-                    }
-                    actualizarFoco();
-                }
-
-                else if (e.key === "Enter" || e.keyCode === 13) {
-                    // Al pulsar OK en el mando, simulamos el clic para cargar el iframe
-                    enlaces[indexActual].click();
-                }
-            });
-
-            // Función para mover el foco e iluminar el elemento
-            function actualizarFoco() {
-                enlaces[indexActual].focus();
-                
-                // Hace scroll automático en el panel izquierdo si hay muchos enlaces y quedan ocultos
-                enlaces[indexActual].scrollIntoView({
-                    behavior: "smooth",
-                    block: "nearest"
-                });
-            }
-
-            // Permitir también que el ratón actualice el índice si se usa un "Air Mouse"
-            enlaces.forEach((enlace, index) => {
-                enlace.addEventListener("mouseenter", () => {
-                    indexActual = index;
-                    enlace.focus();
-                });
-            });
-        });
-    </script>
-
-</body>
-</html>
+#EXTM3U
+#EXTINF:-1 group-title="Cuando nadie nos ve",Episodio 1
+https://t.me/c/1918569531/152167/340856
+#EXTINF:-1 group-title="Cuando nadie nos ve",Episodio 2
+https://t.me/c/1918569531/152167/340857
+#EXTINF:-1 group-title="Cuando nadie nos ve",Episodio 3
+https://t.me/c/1918569531/152167/340858
+#EXTINF:-1 group-title="Cuando nadie nos ve",Episodio 4
+https://t.me/c/1918569531/152167/340859
+#EXTINF:-1 group-title="Cuando nadie nos ve",Episodio 5
+https://t.me/c/1918569531/152167/340860
+#EXTINF:-1 group-title="Cuando nadie nos ve",Episodio 6
+https://t.me/c/1918569531/152167/340862
+#EXTINF:-1 group-title="Cuando nadie nos ve",Episodio 7
+https://t.me/c/1918569531/152167/340862
+#EXTINF:-1 group-title="Cuando nadie nos ve",Episodio 8
+https://t.me/c/1918569531/152167/340863
+#EXTINF:-1 group-title="Innato",Episodio 1
+https://t.me/c/1918569531/152167/349329
+#EXTINF:-1 group-title="Innato",Episodio 2
+https://t.me/c/1918569531/152167/349330
+#EXTINF:-1 group-title="Innato",Episodio 3
+https://t.me/c/1918569531/152167/349331
+#EXTINF:-1 group-title="Innato",Episodio 4
+https://t.me/c/1918569531/152167/349332
+#EXTINF:-1 group-title="Innato",Episodio 5
+https://t.me/c/1918569531/152167/349333
+#EXTINF:-1 group-title="Innato",Episodio 6
+https://t.me/c/1918569531/152167/349334
+#EXTINF:-1 group-title="Innato",Episodio 7
+https://t.me/c/1918569531/152167/349335
+#EXTINF:-1 group-title="Innato",Episodio 8
+https://t.me/c/1918569531/152167/349336
+#EXTINF:-1 group-title="Black bird",Episodio 1
+https://t.me/c/1918569531/152167/337449
+#EXTINF:-1 group-title="Black bird",Episodio 2
+https://t.me/c/1918569531/152167/337450
+#EXTINF:-1 group-title="Black bird",Episodio 3
+https://t.me/c/1918569531/152167/337451
+#EXTINF:-1 group-title="Black bird",Episodio 4
+https://t.me/c/1918569531/152167/337452
+#EXTINF:-1 group-title="Black bird",Episodio 5
+https://t.me/c/1918569531/152167/337453
+#EXTINF:-1 group-title="Black bird",Episodio 6
+https://t.me/c/1918569531/152167/337454
+#EXTINF:-1 group-title="Broadchurch/Temporada 1",E1
+https://t.me/c/3258041172/7294
+#EXTINF:-1 group-title="Broadchurch/Temporada 1",E2
+https://t.me/c/3258041172/7295
+#EXTINF:-1 group-title="Broadchurch/Temporada 1",E3
+https://t.me/c/3258041172/7296
+#EXTINF:-1 group-title="Broadchurch/Temporada 1",E4
+https://t.me/c/3258041172/7297
+#EXTINF:-1 group-title="Broadchurch/Temporada 1",E5
+https://t.me/c/3258041172/7298
+#EXTINF:-1 group-title="Broadchurch/Temporada 1",E6
+https://t.me/c/3258041172/7299
+#EXTINF:-1 group-title="Broadchurch/Temporada 1",E7
+https://t.me/c/3258041172/7300
+#EXTINF:-1 group-title="Broadchurch/Temporada 1",E8
+https://t.me/c/3258041172/7301
+#EXTINF:-1 group-title="Broadchurch/Temporada 2",E1
+https://t.me/c/3258041172/7302
+#EXTINF:-1 group-title="Entre Tierras/Temporada 1",E1
+https://t.me/c/3258041172/13895
+#EXTINF:-1 group-title="Entre Tierras/Temporada 1",E2
+https://t.me/c/3258041172/13896
+#EXTINF:-1 group-title="Entre Tierras/Temporada 1",E3
+https://t.me/c/3258041172/13897
+#EXTINF:-1 group-title="Entre Tierras/Temporada 1",E4
+https://t.me/c/3258041172/13898
+#EXTINF:-1 group-title="Entre Tierras/Temporada 1",E5
+https://t.me/c/3258041172/13899
+#EXTINF:-1 group-title="Entre Tierras/Temporada 1",E6
+https://t.me/c/3258041172/13900
+#EXTINF:-1 group-title="Entre Tierras/Temporada 1",E7
+https://t.me/c/3258041172/13901
+#EXTINF:-1 group-title="Entre Tierras/Temporada 1",E8
+https://t.me/c/3258041172/13902
+#EXTINF:-1 group-title="Entre Tierras/Temporada 1",E9
+https://t.me/c/3258041172/13903
+#EXTINF:-1 group-title="Entre Tierras/Temporada 1",E10
+https://t.me/c/3258041172/13904
+#EXTINF:-1 group-title="Entre Tierras/Temporada 2",E1
+https://t.me/c/3258041172/13905
+#EXTINF:-1 group-title="Entre Tierras/Temporada 2",E2
+https://t.me/c/3258041172/13906
+#EXTINF:-1 group-title="Entre Tierras/Temporada 2",E3
+https://t.me/c/3258041172/13907
+#EXTINF:-1 group-title="Entre Tierras/Temporada 2",E4
+https://t.me/c/3258041172/13908
+#EXTINF:-1 group-title="Entre Tierras/Temporada 2",E5
+https://t.me/c/3258041172/13909
+#EXTINF:-1 group-title="Entre Tierras/Temporada 2",E6
+https://t.me/c/3258041172/13910
+#EXTINF:-1 group-title="Entre Tierras/Temporada 2",E7
+https://t.me/c/3258041172/13911
+#EXTINF:-1 group-title="Entre Tierras/Temporada 2",E8
+https://t.me/c/3258041172/13912
+#EXTINF:-1 group-title="Entre Tierras/Temporada 2",E9
+https://t.me/c/3258041172/13913
+#EXTINF:-1 group-title="Entre Tierras/Temporada 2",E10
+https://t.me/c/3258041172/13914
+#EXTINF:-1 group-title="SHICHAT",M. PLUS
+acestream://67121cbb722b88ce4489717e9a87a26f60184ec9
+#EXTINF:-1 group-title="SHICHAT",M. LA LIGA
+acestream://0b5f802f2de6488b4023d0f05195486e19d81ed7
+#EXTINF:-1 group-title="SHICHAT",DAZN LA LIGA
+acestream://3097d7e7ff0fe414711ee067a841168b6f5671cb
+#EXTINF:-1 group-title="SHICHAT",DAZN LA LIGA 2
+acestream://085afc93f3c502fb31fb79253ebc58e5a8949e84
+#EXTINF:-1 group-title="SHICHAT",HYPERMOTION
+acestream://135c420f704d717b8913b2a66b2722fd6b2c127c
+#EXTINF:-1 group-title="SHICHAT",DAZN MOTO GP
+acestream://2a05a020dfe97aaa0665bb7551022868b2a88b36
+#EXTINF:-1 group-title="SHICHAT",DAZN F1
+acestream://ee4646aae30d862e0d9d453998a344a60aaa7cde
+#EXTINF:-1 group-title="SHICHAT",EVENTUAL
+acestream://79c9dbec46dfa7de3acea6e5e05118e17dc0f065
